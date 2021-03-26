@@ -79,9 +79,15 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], Email, Address, Phone, NeighborhoodId
-                        FROM Owner
-                        WHERE Id = @id";
+                        SELECT  o.Id, 
+                                o.Name, 
+                                o.Email, 
+                                o.Address, 
+                                o.Phone, 
+                                n.Name AS Neighborhood
+                        FROM Owner o
+                        JOIN Neighborhood n ON o.NeighborhoodId = n.Id
+                        WHERE o.Id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -96,7 +102,8 @@ namespace DogGo.Repositories
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             Address = reader.GetString(reader.GetOrdinal("Address")),
                             Phone = reader.GetString(reader.GetOrdinal("Phone")),
-                            NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
+                            //NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId")),
+                            NeighborhoodName = reader.GetString(reader.GetOrdinal("Neighborhood"))
                         };
 
                         reader.Close();
@@ -109,6 +116,9 @@ namespace DogGo.Repositories
             }
         }
 
+
+
+
         public Owner GetOwnerByEmail(string email)
         {
             using (SqlConnection conn = Connection)
@@ -118,7 +128,11 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name], Email, Address, Phone, NeighborhoodId
+                        SELECT  Id, [Name], 
+                                    Email, 
+                                    Address,
+                                    Phone, 
+                                    NeighborhoodId
                         FROM Owner
                         WHERE Email = @email";
 
@@ -148,6 +162,9 @@ namespace DogGo.Repositories
             }
         }
 
+
+
+
         public void AddOwner(Owner owner)
         {
             using (SqlConnection conn = Connection)
@@ -174,6 +191,9 @@ namespace DogGo.Repositories
             }
         }
 
+
+
+
         public void UpdateOwner(Owner owner)
         {
             using (SqlConnection conn = Connection)
@@ -192,7 +212,7 @@ namespace DogGo.Repositories
                                 NeighborhoodId = @neighborhoodId
                             WHERE Id = @id";
 
-                    cmd.Parameters.AddWithValue("@name", owner.Name);
+                    cmd.Parameters.AddWithValue("@name", owner.Name); 
                     cmd.Parameters.AddWithValue("@email", owner.Email);
                     cmd.Parameters.AddWithValue("@address", owner.Address);
                     cmd.Parameters.AddWithValue("@phone", owner.Phone);
@@ -203,6 +223,9 @@ namespace DogGo.Repositories
                 }
             }
         }
+
+
+
 
         public void DeleteOwner(int ownerId)
         {
