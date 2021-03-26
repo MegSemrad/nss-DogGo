@@ -38,7 +38,7 @@ namespace DogGo.Repositories
                                 o.Email, 
                                 o.Address, 
                                 o.Phone, 
-                                n.Name AS Neighborhood 
+                                n.Name AS Neighborhood
                         FROM Owner o
                         JOIN Neighborhood n ON o.NeighborhoodId = n.Id
                     ";
@@ -95,7 +95,8 @@ namespace DogGo.Repositories
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             Address = reader.GetString(reader.GetOrdinal("Address")),
-                            Phone = reader.GetString(reader.GetOrdinal("Phone"))
+                            Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                            NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
                         };
 
                         reader.Close();
@@ -134,6 +135,7 @@ namespace DogGo.Repositories
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             Address = reader.GetString(reader.GetOrdinal("Address")),
                             Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                            NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
                         };
 
                         reader.Close();
@@ -163,6 +165,7 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@email", owner.Email);
                     cmd.Parameters.AddWithValue("@phoneNumber", owner.Phone);
                     cmd.Parameters.AddWithValue("@address", owner.Address);
+                    cmd.Parameters.AddWithValue("@neighborhoodId", owner.NeighborhoodId);
 
                     int id = (int)cmd.ExecuteScalar();
 
@@ -193,6 +196,7 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@email", owner.Email);
                     cmd.Parameters.AddWithValue("@address", owner.Address);
                     cmd.Parameters.AddWithValue("@phone", owner.Phone);
+                    cmd.Parameters.AddWithValue("@neighborhoodId", owner.NeighborhoodId);
                     cmd.Parameters.AddWithValue("@id", owner.Id);
 
                     cmd.ExecuteNonQuery();

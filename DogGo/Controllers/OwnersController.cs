@@ -14,10 +14,15 @@ namespace DogGo.Controllers
         private readonly IOwnerRepository _ownerRepo;
 
 
+
+
         public OwnersController(IOwnerRepository ownerRepository)
         {
             _ownerRepo = ownerRepository;
         }
+
+
+
 
         // GET: OwnersController
         public ActionResult Index()
@@ -25,6 +30,9 @@ namespace DogGo.Controllers
             List<Owner> owners = _ownerRepo.GetAllOwners();
             return View(owners);
         }
+
+
+
 
         // GET: OwnersController/Details/5
         public ActionResult Details(int id)
@@ -39,32 +47,46 @@ namespace DogGo.Controllers
             return View(owner);
         }
 
+
+
+
         // GET: OwnersController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: OwnersController/Create
+
+
+
+        // POST: Owners/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Owner owner)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _ownerRepo.AddOwner(owner);
+
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(owner);
             }
         }
+
+
+
 
         // GET: OwnersController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
+
+
+
 
         // POST: OwnersController/Edit/5
         [HttpPost]
@@ -81,24 +103,34 @@ namespace DogGo.Controllers
             }
         }
 
-        // GET: OwnersController/Delete/5
+
+
+
+        // GET: Owners/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Owner owner = _ownerRepo.GetOwnerById(id);
+
+            return View(owner);
         }
 
-        // POST: OwnersController/Delete/5
+
+
+
+        // POST: Owners/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Owner owner)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _ownerRepo.DeleteOwner(id);
+
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(owner);
             }
         }
     }
