@@ -1,13 +1,9 @@
 ﻿using DogGo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
-// do I need to delete the greyed-out sections above? Would this be considered pushing up unused code? 
+ 
 namespace DogGo.Controllers
 {
     public class HomeController : Controller
