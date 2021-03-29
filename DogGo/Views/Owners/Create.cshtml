@@ -13,7 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label"></label> @*this "asp-for" is to highlight?*@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -33,9 +33,9 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NeighborhoodName" class="control-label"></label>
-                <input asp-for="NeighborhoodName" class="form-control" />
-                <span asp-validation-for="NeighborhoodName" class="text-danger"></span>
+                <label asp-for="NeighborhoodId" class="control-label"></label>
+                <input asp-for="NeighborhoodId" class="form-control" />
+                <span asp-validation-for="NeighborhoodId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -45,7 +45,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a> @*this is the equivalent of click event?*@
 </div>
 
 @section Scripts {

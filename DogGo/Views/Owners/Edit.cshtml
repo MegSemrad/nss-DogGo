@@ -36,6 +36,9 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input asp-for="NeighborhoodId" type="hidden" />
+            </div>
+            <div class="form-group">
                 <label asp-for="NeighborhoodName" class="control-label"></label>
                 <input asp-for="NeighborhoodName" class="form-control" />
                 <span asp-validation-for="NeighborhoodName" class="text-danger"></span>

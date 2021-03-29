@@ -89,7 +89,7 @@ namespace DogGo.Controllers
                 return NotFound();
             }
 
-            return View(owner);
+            return View(owner); //created from database
         }
 
 
@@ -98,7 +98,7 @@ namespace DogGo.Controllers
         // POST: Owners/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Owner owner)
+        public ActionResult Edit(int id, Owner owner) //owner created from browser
         {
             try
             {

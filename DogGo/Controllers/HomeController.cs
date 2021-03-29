@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+// do I need to delete the greyed-out sections above? Would this be considered pushing up unused code? 
 namespace DogGo.Controllers
 {
     public class HomeController : Controller
