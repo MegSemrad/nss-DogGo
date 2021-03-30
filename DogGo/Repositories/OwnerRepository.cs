@@ -70,7 +70,7 @@ namespace DogGo.Repositories
 
 
 
-            public Owner GetOwnerById(int id)
+        public Owner GetOwnerById(int id)
         {
             using (SqlConnection conn = Connection)
             {

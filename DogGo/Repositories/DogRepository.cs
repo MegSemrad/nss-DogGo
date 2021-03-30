@@ -126,6 +126,56 @@ namespace DogGo.Repositories
         }
 
 
+
+
+        public Dog GetDogById(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT  Id, 
+                                Name, 
+                                OwnerId,
+                                Breed, 
+                                Notes, 
+                                ImageUrl
+                        FROM Dog
+                        WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Dog dog = new Dog()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
+                            Breed = reader.GetString(reader.GetOrdinal("Breed")),
+                            Notes = reader.GetString(reader.GetOrdinal("Notes")),
+                            ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl"))
+                        };
+
+                        reader.Close();
+                        return dog;
+                    }
+
+                    reader.Close();
+                    return null;
+                }
+            }
+        }
+
+
+
+
+
         public void AddDog(Dog dog)
         {
             using (SqlConnection conn = Connection)
@@ -148,6 +198,31 @@ namespace DogGo.Repositories
                     int id = (int)cmd.ExecuteScalar();
 
                     dog.Id = id;
+                }
+            }
+        }
+
+
+
+
+
+
+        public void DeleteDog(int dogId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            DELETE FROM Dog
+                            WHERE Id = @id
+                        ";
+
+                    cmd.Parameters.AddWithValue("@id", dogId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
