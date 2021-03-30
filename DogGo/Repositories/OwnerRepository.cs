@@ -3,6 +3,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
+
+
 namespace DogGo.Repositories
 {
     public class OwnerRepository : IOwnerRepository
@@ -22,6 +24,9 @@ namespace DogGo.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
+
+
+
 
 
 
@@ -67,6 +72,9 @@ namespace DogGo.Repositories
                 }
             }
         }
+
+
+
 
 
 
@@ -120,6 +128,8 @@ namespace DogGo.Repositories
 
 
 
+
+
         public Owner GetOwnerByEmail(string email)
         {
             using (SqlConnection conn = Connection)
@@ -166,6 +176,8 @@ namespace DogGo.Repositories
 
 
 
+
+
         public void AddOwner(Owner owner)
         {
             using (SqlConnection conn = Connection)
@@ -191,6 +203,8 @@ namespace DogGo.Repositories
                 }
             }
         }
+
+
 
 
 
@@ -224,6 +238,8 @@ namespace DogGo.Repositories
                 }
             }
         }
+
+
 
 
 

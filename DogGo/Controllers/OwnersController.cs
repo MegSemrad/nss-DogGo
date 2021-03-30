@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
+
+
 namespace DogGo.Controllers
 {
     public class OwnersController : Controller
     {
         private readonly IOwnerRepository _ownerRepo;
-
-
 
 
         public OwnersController(IOwnerRepository ownerRepository)
@@ -21,15 +21,14 @@ namespace DogGo.Controllers
 
 
 
+
+
         // GET: OwnersController
         public ActionResult Index()
         {
             List<Owner> owners = _ownerRepo.GetAllOwners();
             return View(owners);
         }
-
-
-
 
         // GET: OwnersController/Details/5
         public ActionResult Details(int id)
@@ -47,14 +46,13 @@ namespace DogGo.Controllers
 
 
 
+
+
         // GET: OwnersController/Create
         public ActionResult Create()
         {
             return View();
         }
-
-
-
 
         // POST: Owners/Create
         [HttpPost]
@@ -76,6 +74,8 @@ namespace DogGo.Controllers
 
 
 
+
+
         // GET: Owners/Edit/5
         public ActionResult Edit(int id)
         {
@@ -88,9 +88,6 @@ namespace DogGo.Controllers
 
             return View(owner); //created from database
         }
-
-
-
 
         // POST: Owners/Edit/5
         [HttpPost]
@@ -112,6 +109,8 @@ namespace DogGo.Controllers
 
 
 
+
+
         // GET: Owners/Delete/5
         public ActionResult Delete(int id)
         {
@@ -119,9 +118,6 @@ namespace DogGo.Controllers
 
             return View(owner);
         }
-
-
-
 
         // POST: Owners/Delete/5
         [HttpPost]

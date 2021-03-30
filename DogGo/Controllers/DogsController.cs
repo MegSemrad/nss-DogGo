@@ -1,9 +1,10 @@
 ﻿using DogGo.Models;
 using DogGo.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+
+
 
 namespace DogGo.Controllers
 {
@@ -15,6 +16,10 @@ namespace DogGo.Controllers
         {
             _dogRepo = dogRepository;
         }
+
+
+
+
 
 
         // GET: DogsController
@@ -36,6 +41,11 @@ namespace DogGo.Controllers
 
             return View(dog);
         }
+
+
+
+
+
 
         // GET: DogsController/Create
         public ActionResult Create()
@@ -59,6 +69,11 @@ namespace DogGo.Controllers
                 return View(dog);
             }
         }
+
+
+
+
+
 
         // GET: DogsController/Edit/5
         public ActionResult Edit(int id)
@@ -89,6 +104,11 @@ namespace DogGo.Controllers
                 return View(dog);
             }
         }
+
+
+
+
+
 
         // GET: DogsController/Delete/5
         public ActionResult Delete(int id)

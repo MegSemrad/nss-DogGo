@@ -3,6 +3,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
+
+
 namespace DogGo.Repositories
 {
     public class DogRepository : IDogRepository
@@ -15,6 +17,7 @@ namespace DogGo.Repositories
             _config = config;
         }
 
+
         public SqlConnection Connection
         {
             get
@@ -22,6 +25,9 @@ namespace DogGo.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
+
+
+
 
 
 
@@ -72,6 +78,7 @@ namespace DogGo.Repositories
                 }
             }
         }
+
 
 
 
@@ -128,6 +135,8 @@ namespace DogGo.Repositories
 
 
 
+
+
         public Dog GetDogById(int id)
         {
             using (SqlConnection conn = Connection)
@@ -171,6 +180,7 @@ namespace DogGo.Repositories
                 }
             }
         }
+
 
 
 

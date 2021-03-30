@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 
+
 namespace DogGo.Controllers
 {
     public class WalkersController : Controller
@@ -16,6 +17,12 @@ namespace DogGo.Controllers
         {
             _walkerRepo = walkerRepository;
         }
+
+
+
+
+
+
         // GET: Walkers
         public ActionResult Index()
         {
@@ -36,6 +43,11 @@ namespace DogGo.Controllers
 
             return View(walker);
         }
+
+
+
+
+
 
         // GET: WalkersController/Create
         public ActionResult Create()
@@ -58,6 +70,11 @@ namespace DogGo.Controllers
             }
         }
 
+
+
+
+
+
         // GET: WalkersController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -78,6 +95,11 @@ namespace DogGo.Controllers
                 return View();
             }
         }
+
+
+
+
+
 
         // GET: WalkersController/Delete/5
         public ActionResult Delete(int id)
