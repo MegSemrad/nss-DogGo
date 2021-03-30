@@ -1,5 +1,6 @@
 ﻿using DogGo.Models;
 using DogGo.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace DogGo.Controllers
 
 
         // GET: DogsController
+        [Authorize]
         public ActionResult Index()
         {
             int ownerId = GetCurrentUserId();
@@ -32,6 +34,7 @@ namespace DogGo.Controllers
         }
 
         // GET: DogsController/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             List<Dog> dog = _dogRepo.GetDogsByOwnerId(id);
@@ -50,6 +53,7 @@ namespace DogGo.Controllers
 
 
         // GET: DogsController/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -62,6 +66,9 @@ namespace DogGo.Controllers
         {
             try
             {
+                // update the dogs OwnerId to the current user's Id
+                dog.OwnerId = GetCurrentUserId();
+
                 _dogRepo.AddDog(dog);
 
                 return RedirectToAction("Index");
@@ -78,6 +85,7 @@ namespace DogGo.Controllers
 
 
         // GET: DogsController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Dog dog = _dogRepo.GetDogById(id);
@@ -113,6 +121,7 @@ namespace DogGo.Controllers
 
 
         // GET: DogsController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Dog dog = _dogRepo.GetDogById(id);
